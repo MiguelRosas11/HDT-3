@@ -1,38 +1,56 @@
 package org.example;
-
+import java.util.Scanner;
 import java.util.*;
 
 public class mainSorts {
 
     public static void main(String[] args) {
+        String file = "numeros.csv";
         Sorts sort = new Sorts();
-        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(170, 45, 75, 90, 802, 24, 2, 66));
+        CSV csv = new CSV(file);
+        Scanner sc = new Scanner(System.in);
+        int menu = 0;
+        while (menu < 1) {
+            System.out.println("1. Insertion sort \n2. MergeSort \n3. QuickSort \n4. RadixSort \n5. BucketSort \n6. HeapSort \n7. Desordenar csv \n8. Terminar ejecución.");
+            int opc = sc.nextInt();
+            sc.nextLine();
+            if (opc == 1) {
+                sort.InsertionSort(csv.getLista());
+                csv.escribirCSV();
+            }
+            else if(opc == 2){
+                sort.mergeSort(csv.getLista());
+                csv.escribirCSV();
+            }
+            else if(opc == 3){
+                sort.quickSort(csv.getLista(), 0, csv.getLista().size() - 1);
+                csv.escribirCSV();
 
-        System.out.println("Original: " + numbers);
+            }
+            else if(opc == 4){
+                sort.radixSort(csv.getLista());
+                csv.escribirCSV();
 
+            }
+            else if(opc == 5){
+                sort.bucketSort(csv.getLista());
+                csv.escribirCSV();
 
-        ArrayList<Integer> InsertionSort = new ArrayList<>(numbers);
-        sort.InsertionSort(InsertionSort);
-        System.out.println("insertion Sort: " + InsertionSort);
+            }
+            else if(opc == 6){
+                sort.heapSort(csv.getLista());
+                csv.escribirCSV();
 
-        ArrayList<Integer> mergeSort = new ArrayList<>(numbers);
-        sort.mergeSort(mergeSort);
-        System.out.println("merge Sort: " + mergeSort);
-
-        ArrayList<Integer> QuickSort = new ArrayList<>(numbers);
-        sort.quickSort(QuickSort, 0, QuickSort.size() - 1);
-        System.out.println("Quick Sort: " + QuickSort);
-
-        ArrayList<Integer> radixSorted = new ArrayList<>(numbers);
-        sort.radixSort(radixSorted);
-        System.out.println("Radix Sort: " + radixSorted);
-
-        ArrayList<Integer> bucketSorted = new ArrayList<>(numbers);
-        sort.bucketSort(bucketSorted);
-        System.out.println("Bucket Sort: " + bucketSorted);
-
-        ArrayList<Integer> heapSorted = new ArrayList<>(numbers);
-        sort.heapSort(heapSorted);
-        System.out.println("Heap Sort: " + heapSorted);
+            }
+            else if(opc == 7){
+                csv.Sobreescribir_CSV();
+            }
+            else if (opc == 8) {
+                menu = menu + 1;
+            }
+            else{
+                System.out.println("ingrese una opción válida");
+            }
+        }
     }
 }

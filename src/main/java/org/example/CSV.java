@@ -7,10 +7,15 @@ public class CSV {
     private String file;
     private ArrayList<Integer> lista;
 
-    public CSV(String file){
+    public CSV(String file) {
         this.file = file;
-        this.lista = lista;
-
+        if (!Existe()) {
+            this.lista = ListaNumeros();
+            escribirCSV();
+        }
+        else{
+            this.lista = leerCSV();
+        }
     }
     private boolean Existe(){
         return new File(file).exists();
