@@ -10,7 +10,7 @@ public class Sorts {
     private CSV csv;
 
     public void InsertionSort(ArrayList<Integer> lista) {
-        csv.Sobreescribir_CSV();
+        //csv.Sobreescribir_CSV();
         for (int i = 1; i < lista.size(); i++) {
             int base = lista.get(i);
             int comparacion = i - 1;
@@ -23,7 +23,7 @@ public class Sorts {
     }
 
     public void mergeSort(ArrayList<Integer> lista) {
-        csv.Sobreescribir_CSV();
+        //csv.Sobreescribir_CSV();
         if (lista.size() <= 1) {
             return;
         }
