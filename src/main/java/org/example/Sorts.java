@@ -55,6 +55,24 @@ public class Sorts {
             j++;
         }
     }
+    public static void quickSort(ArrayList<Integer> lista, int inicio, int fin) {
+        if (inicio < fin) {
+            int pivote = lista.get(fin);
+            int i = inicio - 1;
+
+            for (int j = inicio; j < fin; j++) {
+                if (lista.get(j) <= pivote) {
+                    i++;
+                    Collections.swap(lista, i, j);
+                }
+            }
+            Collections.swap(lista, i + 1, fin);
+            int pivoteIndex = i + 1;
+
+            quickSort(lista, inicio, pivoteIndex - 1);
+            quickSort(lista, pivoteIndex + 1, fin);
+        }
+    }
 
     public void radixSort(ArrayList<Integer> lista) {
         int max = Collections.max(lista);
