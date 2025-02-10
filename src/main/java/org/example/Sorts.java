@@ -18,5 +18,34 @@ public class Sorts {
         }
     }
 
-    public void
+    public void mergeSort(ArrayList<Integer> lista){
+        csv.Sobreescribir_CSV();
+        int medio = lista.size() / 2;
+        ArrayList<Integer> izquierda = new ArrayList<>(lista.subList(0, medio));
+        ArrayList<Integer> derecha = new ArrayList<>(lista.subList(medio, lista.size()));
+
+        mergeSort(izquierda);
+        mergeSort(derecha);
+
+        lista.clear();
+        int i = 0, j = 0;
+        while (i < izquierda.size() && j < derecha.size()) {
+            if (izquierda.get(i) <= derecha.get(j)) {
+                lista.add(izquierda.get(i));
+                i++;
+            } else {
+                lista.add(derecha.get(j));
+                j++;
+            }
+        }
+        while (i < izquierda.size()) {
+            lista.add(izquierda.get(i));
+            i++;
+        }
+        while (j < derecha.size()) {
+            lista.add(derecha.get(j));
+            j++;
+        }
+    }
+
 }
