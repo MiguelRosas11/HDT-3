@@ -9,13 +9,8 @@ public class CSV {
 
     public CSV(String file){
         this.file = file;
-        if(!Existe()) {
-            this.lista = ListaNumeros();
-            escribirCSV();
-        }
-        else{
-            this.lista = leerCSV();
-        }
+        this.lista = lista;
+
     }
     private boolean Existe(){
         return new File(file).exists();
@@ -29,9 +24,7 @@ public class CSV {
             numeros.add(numeroAleatorio);
         }
         return numeros;
-
     }
-
     public void escribirCSV(){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             for (Integer numero : this.lista) {
@@ -41,7 +34,6 @@ public class CSV {
         } catch (IOException e) {
             System.out.println("Error al escribir el archivo CSV: " + e.getMessage());
         }
-
     }
 
     public ArrayList<Integer> getLista() {
@@ -60,4 +52,11 @@ public class CSV {
         }
         return numeros;
     }
+
+    public void Sobreescribir_CSV(){
+        this.lista = ListaNumeros();
+        escribirCSV();
+    }
+
+
 }
