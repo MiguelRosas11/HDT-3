@@ -5,9 +5,17 @@ import java.util.Random;
 
 public class CSV {
     private String file;
+    private ArrayList<Integer> lista;
 
     public CSV(String file){
         this.file = file;
+        if(!Existe()) {
+            this.lista = ListaNumeros();
+            escribirCSV();
+        }
+        else{
+            this.lista = leerCSV();
+        }
     }
     private boolean Existe(){
         return new File(file).exists();
@@ -25,9 +33,8 @@ public class CSV {
     }
 
     public void escribirCSV(){
-        ArrayList<Integer> numeros = ListaNumeros();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            for (Integer numero : numeros) {
+            for (Integer numero : this.lista) {
                 writer.write(numero.toString());
                 writer.newLine();
             }
@@ -35,6 +42,10 @@ public class CSV {
             System.out.println("Error al escribir el archivo CSV: " + e.getMessage());
         }
 
+    }
+
+    public ArrayList<Integer> getLista() {
+        return lista;
     }
 
     public ArrayList<Integer> leerCSV() {
