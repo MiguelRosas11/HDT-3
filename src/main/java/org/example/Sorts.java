@@ -17,4 +17,6 @@ public class Sorts {
             lista.set(comparacion + 1, base);
         }
     }
+
+    public void
 }
